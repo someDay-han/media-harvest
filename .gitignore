@@ -1,0 +1,16 @@
+# 内部文档（不发布）
+AGENTS.md
+docs/
+.scratch/
+
+# 本地配置与运行产物
+config.yaml
+.cache/
+.last-search.json
+
+# Python
+__pycache__/
+*.egg-info/
+.pytest_cache/
+build/
+dist/

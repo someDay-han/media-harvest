@@ -1,0 +1,36 @@
+# media_harvest 配置模板：复制为 config.yaml 后按需修改
+# 所有字段都有内建默认值；config.yaml 不入库（.gitignore）
+
+pixabay:
+  # 官方 API key（仅覆盖图片/视频端点；音频永远走 bootstrap 逆向）
+  # 获取：登录 pixabay.com 后在个人设置页查看 API key
+  api_key: ""
+
+fetch:
+  # 页面/bootstrap 获取通道：playwright（主，过 Cloudflare）| direct | jina
+  channel: playwright
+  # 代理（本机直连则留空；需要时填 http://host:8080）
+  proxy: ""
+  # MITM 证书链（仅需要抓包/代理环境时填写）
+  ssl_cert_file: ""
+  # 请求最小间隔（秒），Pixabay ToS 要求非批量
+  min_interval: 1.0
+  # 渲染代理兜底前缀
+  jina_prefix: "https://r.jina.ai/"
+
+player:
+  # 留空 = 自动探测 ffplay / mpv / vlc；也可写自定义命令，如 "mpv --no-config"
+  command: ""
+
+library:
+  # 中央素材库根
+  root: "~/media/pixabay"
+
+cache:
+  # 搜索缓存目录与 TTL（小时）
+  dir: "~/.cache/media_harvest"
+  ttl_hours: 24
+
+state:
+  # 最近一次搜索的引用表（open/download 用序号时依赖它）
+  dir: "~/.local/state/media_harvest"
